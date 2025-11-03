@@ -61,8 +61,17 @@ const callbackDoVigia = (mutationsList, observer) => {
   }, debounceTime);
 }; // adiciona no array sentenceFragments e dps chama o processFinal
 
-function injetarNoChat(textoParaSerEnviado) {
+const btn = 'arial-label="Enviar uma mensagem"';
+const textarea = 'arial-label="Enviar uma mensagem"';
 
+function injetarNoChat(textoParaSerEnviado) {
+  btnEnviar = document.querySelector(button[btn]);
+  caixaDoTexto = document.querySelector(textarea[textarea]);
+
+  if (!btnEnviar && !caixaDoTexto) {
+    console.error()
+    return
+  }
 }
 const iniciarVigia = () => {
   const targetNode = document.querySelector(SELETOR_ALVO_PAI);
@@ -86,7 +95,6 @@ const iniciarVigia = () => {
 }; // fica vigiando se algo foi mudado e assim que foi mudado ele comeca a observa e chamar a funcao
 
 iniciarVigia();
-
 
 /*  Seletor CSS do textarea e do button: 
 
