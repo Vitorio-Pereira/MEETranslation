@@ -6,8 +6,8 @@ Essa e um projeto para uma extensão que ira traduzir chamadas do MEET
 
 <ol>
 
-<li> Abrir o chrome em gerenciador de extensao <li>
-
+<li> Abrir o chrome em gerenciador de extensao
 ![alt text](image.png)
+ <li>
 
 </ol>
