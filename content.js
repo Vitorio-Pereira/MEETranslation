@@ -27,7 +27,7 @@ async function traduzirTexto(
 } // funcao para traduzir o texto pego pela legenda
 
 const SELETOR_ALVO_PAI = '[aria-label="Legendas"]';
-let debounceTime = 5000;
+let debounceTime = 3000;
 let sentenceFragments = [];
 //variaveis
 async function processFinal() {
@@ -41,6 +41,8 @@ async function processFinal() {
   const traducao = await traduzirTexto(fullSentence);
 
   console.log("Frase cozinhada:", traducao);
+
+  injetarNoChat(traducao);
 } // funcao que chama a traducao com o texto novo
 
 const callbackDoVigia = (mutationsList, observer) => {
@@ -61,18 +63,25 @@ const callbackDoVigia = (mutationsList, observer) => {
   }, debounceTime);
 }; // adiciona no array sentenceFragments e dps chama o processFinal
 
-const btn = 'arial-label="Enviar uma mensagem"';
-const textarea = 'arial-label="Enviar uma mensagem"';
-
 function injetarNoChat(textoParaSerEnviado) {
-  btnEnviar = document.querySelector(button[btn]);
-  caixaDoTexto = document.querySelector(textarea[textarea]);
+  btnEnviar = document.querySelector(
+    'button[aria-label="Enviar uma mensagem"]'
+  );
+  caixaDoTexto = document.querySelector(
+    'textarea[aria-label="Enviar uma mensagem"]'
+  );
 
-  if (!btnEnviar && !caixaDoTexto) {
-    console.error()
-    return
+  if (!btnEnviar || !caixaDoTexto) {
+    console.error();
+    return;
   }
+
+  caixaDoTexto.value = textoParaSerEnviado;
+  caixaDoTexto.dispatchEvent(new Event("input", { bubbles: true }));
+
+  setTimeout(() => btnEnviar.click(), 100);
 }
+
 const iniciarVigia = () => {
   const targetNode = document.querySelector(SELETOR_ALVO_PAI);
 
@@ -95,10 +104,3 @@ const iniciarVigia = () => {
 }; // fica vigiando se algo foi mudado e assim que foi mudado ele comeca a observa e chamar a funcao
 
 iniciarVigia();
-
-/*  Seletor CSS do textarea e do button: 
-
-aria-label="Enviar uma mensagem" // do textarea
------------- = ------------
-aria-label="Enviar uma mensagem" // do button 
-*/
