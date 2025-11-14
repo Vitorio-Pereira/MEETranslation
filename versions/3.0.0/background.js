@@ -3,16 +3,6 @@ importScripts(
   "./firebase/firebase-firestore-compat.js"
 );
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD4FFMuempH3hisfbK18FgriVgI-2CjYaw",
-  authDomain: "meetranslation-d2bf7.firebaseapp.com",
-  projectId: "meetranslation-d2bf7",
-  storageBucket: "meetranslation-d2bf7.firebasestorage.app",
-  messagingSenderId: "577437390357",
-  appId: "1:577437390357:web:4db8dd4b13adcf3381201c",
-  measurementId: "G-FY4QJ3BKRY",
-};
-
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
