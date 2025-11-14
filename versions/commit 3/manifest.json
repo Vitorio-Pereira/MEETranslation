@@ -1,0 +1,15 @@
+{
+  "name": "Traduzir CC",
+  "description": "Le legenda do Meet e traduz no chat",
+  "version": "3.0.0",
+  "manifest_version": 3,
+  "permissions": ["storage"],
+  "host_permissions": ["https://meet.google.com/*"],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    { "matches": ["https://meet.google.com/*"], "js": ["content.js"] }
+  ],
+  "background": { "service_worker": "background.js"}
+}
